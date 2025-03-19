@@ -3,14 +3,11 @@ package main
 import "strings"
 
 func lengthOfLastWord(s string) int {
+	// Use the Fields function from the strings package to separate
+	// strings by whitespace and return a slice of strings
     sFields := strings.Fields(s)
-    ans := 0
-    for i, v := range sFields {
-        if i == len(sFields)-1 {
-            ans += len(v)
-        }
-    }
-    return ans
+	// Directly return the length of the element at the last index
+    return len(sFields[len(sFields)-1])
 }
 
 func main () {}
