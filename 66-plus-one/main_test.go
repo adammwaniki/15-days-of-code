@@ -22,6 +22,9 @@ func TestPlusOne(t *testing.T) {
 
 		// Test case 4: input [9,8,9], expected output [9,9,0]
 		{[]int{9,8,9}, []int{9,9,0}},
+
+		// Test case 5: input [9,9,9], expected output [1,0,0,0]
+		{[]int{9,9,9}, []int{1,0,0,0}},
 	}
 
 	// Iterate over the test cases
