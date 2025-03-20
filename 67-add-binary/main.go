@@ -17,11 +17,24 @@ The carry is then shifted left (<< 1) to add it to the next higher bit.
 */
 package main
 
-import "strconv"
+import (
+	"fmt"
+	"strconv"
+)
 
 func addBinary(a string, b string) string {
-    a = strconv.Atoi(a)
-    b = strconv.Atoi(b)
+	//var i int
+	//var j int
+    if i, err := strconv.ParseInt(a, 2, 64); err != nil {
+        fmt.Println(err)
+    } else {
+        fmt.Println(i)
+    }
+	if j, err := strconv.ParseInt(b, 2, 64); err != nil {
+        fmt.Println(err)
+    } else {
+        fmt.Println(j)
+    }
     for b != 0 { 
         sum := a ^ b      // XOR for addition without carry
         carry := (a & b) << 1 // AND finds carry and shifts it left
