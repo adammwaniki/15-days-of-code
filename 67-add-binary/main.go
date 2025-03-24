@@ -3,9 +3,10 @@ package main
 import "math/big"
 
 func addBinary(a string, b string) string {
-    // Convert binary strings to big integers
+    // Initialise a zero-value big.Int and allow setting its value later
 	num1 := new(big.Int)
 	num2 := new(big.Int)
+    // alternatively we could have used num := big.NewInt(value) but the value is limited to numbers in the int64 range
 
 	// Parse binary strings into big.Int values
 	num1.SetString(a, 2)
