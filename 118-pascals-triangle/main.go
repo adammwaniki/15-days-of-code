@@ -20,10 +20,16 @@
 
         return row
     }
+
 - O(n) Time, O(n) Space
 *
 - However,  we also need to include the values from the rows prior to the current
-- 
+- As such, this would require:
+    - The creation of  a 2D slice to hold the triangle's values 
+    - i.e. first the declaration/initialisation of an outer slice, followed by:
+    - A loop to handle the creation of slices for values from k=1 to numRows inclusive
+    - A loop to handle the insertion of Pascal's triangle's row values into the slices
+    - O(n^2) Time, O(n^2) Space
 */
 
 package main
