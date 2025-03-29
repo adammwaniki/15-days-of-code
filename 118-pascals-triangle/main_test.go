@@ -11,10 +11,16 @@ func TestGenerate(t *testing.T) {
 		expected 	[][]int
 	}{
 		// Test case 1: numRows = 5, output [[1],[1,1],[1,2,1],[1,3,3,1],[1,4,6,4,1]]
-		{},
+		{5, [][]int{
+			{1},
+			{1,1},
+			{1,2,1},
+			{1,3,3,1},
+			{1,4,6,4,1},
+		}},
 
 		// Test case 2: numRows = 1, output [[1]]
-		{},
+		{1, [][]int{{1},}},
 
 	}
 
