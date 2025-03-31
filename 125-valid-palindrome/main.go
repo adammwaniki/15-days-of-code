@@ -3,6 +3,7 @@
 - Early return true if s is " " i.e. a string with no characters(different from empty string)
 - Strip the string of whitespaces and characters not in the alphabet
 - Join the characters and convert to lowercase to be case insensitive
+- This can be handled using the regexp package
 - A string is a slice of bytes
 - Option 1: Iterate from both ends of the string and compare iterators
     - for i, j, mid := 0, len(s)-1, int((i+j)/2) ; i < mid && j > mid ; i, j = i+1, j-1 {
