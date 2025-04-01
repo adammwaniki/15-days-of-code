@@ -36,21 +36,21 @@ type ListNode struct {
 
 
 func hasCycle(head *ListNode) bool {
-	// Early return false for nil list
-	if head == nil || head.Next == nil {
-		return false
-	}
 	// Declare tortoise and hare for list traversal
     tortoise := head
 	hare := head
 
-    for hare != nil && hare.Next != nil {
+    for { // for loop with absent condition is evaluated true
+		if hare == nil || hare.Next == nil {
+			return false
+		}
+
         tortoise = tortoise.Next
 		hare = hare.Next.Next
+		
 		if tortoise == hare {
 			return true
 		}
     }
-	return false
     
 }
