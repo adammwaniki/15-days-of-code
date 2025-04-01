@@ -27,6 +27,8 @@ package main
  - While tortoise != hare: tortoise = tortoise.Next, hare = hare.Next
  - Return tortoise or hare since they will be at the same place
 
+ Time: O(n), Space: O(1)
+
 */
 type ListNode struct {
 	Val int
@@ -47,7 +49,7 @@ func hasCycle(head *ListNode) bool {
 
         tortoise = tortoise.Next
 		hare = hare.Next.Next
-		
+
 		if tortoise == hare {
 			return true
 		}
