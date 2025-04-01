@@ -18,6 +18,12 @@ func TestIsPalindrome(t *testing.T) {
 
 		// Test case 3: s = " ", output true
 		{" ", true},
+
+		// Test case 4: s = "!,.,!", output true
+		{"!,.,!", true},
+
+		// Test case 5: s = "a.", output true
+		{"a.", true},
 	}
 
 	for _, test := range tests {

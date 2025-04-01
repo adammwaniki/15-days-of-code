@@ -36,7 +36,7 @@ func isPalindrome(s string) bool {
         return true
     } 
 
-    pattern := regexp.MustCompile(`[^,.!@#$%^&\s]`) // regex negated character set denoted by ^
+    pattern := regexp.MustCompile(`\w`) // regex character class (for alphanumeric + underscore) denoted by \w
     matches := pattern.FindAllString(s, -1)
 
     i, j  := 0, len(matches)-1
