@@ -58,45 +58,46 @@ type ListNode struct {
 	Next *ListNode
 }
 
-// Helper function to find the length of headA and headB
-func recursiveLength(n *ListNode) (result int) {
-    if n != nil {
-        n = n.Next
-        return 1 + recursiveLength(n)
+// Helper function to find the length of a linked list
+func recursiveLength(n *ListNode) int {
+    if n == nil {
+        return 0
     }
-    return 0
+    return 1 + recursiveLength(n.Next)
 }
 
 func getIntersectionNode(headA, headB *ListNode) *ListNode {
-    p := headA
-	q := headB
-	lenP := recursiveLength(p)
-	lenQ := recursiveLength(q)
-	diff := lenP - lenQ 
+    if headA == nil || headB == nil {
+        return nil
+    }
 
-	// Moving to the nodes that correspond to using the same number of steps to reach the end at the same time
-	if diff > 0 {
-		for i := 0 ; i < diff ; i++ {
-			p = p.Next
-		}
-	} else {
-		for i := 0 ; i > diff ; i++ {
-			q = q.Next
-		}
-	}
+    lenA := recursiveLength(headA)
+    lenB := recursiveLength(headB)
+    diff := lenA - lenB
 
-	for {
-		if p == nil || p.Next == nil {
-			return nil
-		}
-		
-		if p == q {
-			return p
-		}
-		p = p.Next
-		q = q.Next	
-	}
-	return nil
+    p, q := headA, headB
+
+    // Align p and q to start at the same position
+    if diff > 0 {
+        for i := 0; i < diff; i++ {
+            p = p.Next
+        }
+    } else {
+        for i := 0; i < -diff; i++ {
+            q = q.Next
+        }
+    }
+
+    // Traverse together to find intersection
+    for p != nil && q != nil {
+        if p == q {
+            return p
+        }
+        p = p.Next
+        q = q.Next
+    }
+
+    return nil // No intersection found
 }
 
 func main() {}
