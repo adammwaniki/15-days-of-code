@@ -27,18 +27,58 @@ func createLinkedList(values []int) *ListNode {
 	return head
 }
 
-func TestGetIntersectionNode(t *testing.T) {
-	tests := []struct {
-		headA		*ListNode
-		headB		*ListNode
-		expected	*ListNode
-	}{
-		// Test case 1: input headA = [4,1,8,4,5] headB = [5,6,1,8,4,5], output expect intersection at '8'
-		{}, 
+// Helper function to create an intersection
+func createIntersectingLists(aVals, bVals []int, intersectVal int) (*ListNode, *ListNode, *ListNode) {
+	headA := createLinkedList(aVals)
+	headB := createLinkedList(bVals)
+
+	// Find the intersection node in headA
+	var intersectionNode *ListNode
+	for node := headA; node != nil; node = node.Next {
+		if node.Val == intersectVal {
+			intersectionNode = node
+			break
+		}
 	}
 
-	for _, test := range tests {
+	// Attach headB to the intersection node
+	if intersectionNode != nil {
+		curr := headB
+		for curr.Next != nil {
+			curr = curr.Next
+		}
+		curr.Next = intersectionNode
+	}
+
+	return headA, headB, intersectionNode
+}
+
+
+func TestGetIntersectionNode(t *testing.T) {
+	// Create the first test case with intersection
+	headA1, headB1, expected1 := createIntersectingLists([]int{4, 1, 8, 4, 5}, []int{5, 6, 1}, 8)
+
+	tests := []struct {
+		headA, headB *ListNode
+		expected     *ListNode
+	}{
+		// Test case 1: Lists intersect at node with value 8
+		{headA1, headB1, expected1},
+
+		// Test case 2: No intersection
+		{
+			createLinkedList([]int{2, 6, 4}),
+			createLinkedList([]int{1, 5}),
+			nil,
+		},
+	}
+
+	for i, test := range tests {
 		result := getIntersectionNode(test.headA, test.headB)
 
+		if result != test.expected {
+			t.Errorf("Test %d failed: got %v, expected %v", i+1, result, test.expected)
+		}
 	}
 }
+
